@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Render } from '@nestjs/common';
 
 import { TopicService } from './topic.service';
 import { TopicDocument } from './schema/topic.schema';
@@ -9,7 +9,16 @@ export class TopicController {
 
   // [GET] /topics
   @Get()
-  async findAll(): Promise<TopicDocument[]> {
-    return this.topicService.findAll();
+  @Render('client/pages/topics/topics')
+  async findAll(): Promise<{
+    titlePage: string;
+    message: string;
+    topics: TopicDocument[];
+  }> {
+    return {
+      titlePage: 'Trang chủ đề',
+      message: 'Danh sách chủ đề',
+      topics: await this.topicService.findAll(),
+    };
   }
 }
