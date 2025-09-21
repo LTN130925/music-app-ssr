@@ -1,24 +1,17 @@
-import { Module, Controller, Get, Render } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
+import { Module } from '@nestjs/common';
+import { RouterModule } from '@nestjs/core';
 
-@Controller()
-export class AppController {
-  @Get()
-  @Render('main')
-  getHello(): Record<string, string> {
-    return {
-      titlePage: 'Home',
-      message: 'Hello World',
-    };
-  }
-}
+import { ClientModule } from './modules/client/client.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({
-      isGlobal: true,
-    }),
+    RouterModule.register([
+      {
+        path: '',
+        module: ClientModule,
+      },
+    ]),
+    ClientModule,
   ],
-  controllers: [AppController],
 })
 export class AppModule {}
