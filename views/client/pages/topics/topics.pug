@@ -1,16 +1,20 @@
 extends ../../layouts/default
+include ../../mixins/box-head
 
 block content
-  h1.text-2xl.font-bold #{message}
-  
-  .grid.grid-cols-1.sm: grid-cols-2.md: grid-cols-3.gap-4.mt-4
-    if !topics.length
-      .col-span-3.text-center.text-lg.font-bold.text-gray-500 Chưa có chủ đề
-    else
-      each topic in topics
-        .border.border-gray-200.rounded-lg.p-4.shadow-sm.hover: shadow-md.cursor-pointer(
-          style={backgroundColor: topic.color}
-        )
-          h2.text-lg.font-semibold #{topic.title}
-          if topic.description
-            p.text-sm.text-gray-700.mt-2 #{topic.description}
+  .container
+    .row
+      .col-md-12
+        +box-head("Trang chủ")
+        p Bạn có thể tìm kiếm nhạc theo chủ đề bên cạnh
+
+        if topics.length > 0
+          form.form-inline.mt-3
+            .form-group.mr-2
+              select.form-control(name="topic", id="topic")
+                option(value="") Chọn chủ đề
+                each topic in topics
+                  option(value=topic.id)= topic.name
+            button.btn.btn-primary(type="submit") Tìm kiếm
+        else
+          p.text-muted.mt-3 Chưa có chủ đề nào
