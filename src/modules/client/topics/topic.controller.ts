@@ -1,7 +1,7 @@
 import { Controller, Get, Render } from '@nestjs/common';
 
 import { TopicService } from './topic.service';
-import { TopicDocument } from './schema/topic.schema';
+// import { TopicDocument } from './schema/topic.schema';
 
 @Controller('topics')
 export class TopicController {
@@ -13,7 +13,7 @@ export class TopicController {
   async findAll(): Promise<{
     titlePage: string;
     message: string;
-    topics: TopicDocument[];
+    topics: any[];
   }> {
     return {
       titlePage: 'Trang chủ đề',
