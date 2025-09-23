@@ -12,17 +12,21 @@ block content
           each song in songs
             .col-md-6.col-lg-4.col-xl-3
               .song-card
-                .song-card-img(style=`background-image: url('${song.img}')`)
+                .song-card-img(style=`background-image: url('${song.avatar}')`)
                   .overlay
                     h5.title
                       a(href=`/songs/detail/${song.slug}`)= song.title
                     p.singer 
                       i.fas.fa-microphone-alt(aria-hidden="true")
-                      |  #{song.singer}
+                      |  #{song.singerId.fullName ? song.singerId.fullName : 'Unknown'}
                     .meta
                       span.like
                         i.fas.fa-thumbs-up(aria-hidden="true")
-                        |  #{song.likes}
+                        |  #{song.like ? song.like : 0}
+                      span.view
+                        i.fas.fa-eye(aria-hidden="true")
+                        |  #{song.views ? song.views : 0}
                       span.time
                         i.far.fa-clock(aria-hidden="true")
-                        |  #{song.time}
+                        |  #{song.time ? song.time : '00:00'}
+                        

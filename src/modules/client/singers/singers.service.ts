@@ -11,6 +11,10 @@ export class SingersService {
   ) {}
 
   async findAll(): Promise<Singer[]> {
-    return this.singerModel.find().exec();
+    const filter: Record<string, unknown> = {
+      status: 'active',
+      deleted: false,
+    };
+    return this.singerModel.find(filter).exec();
   }
 }

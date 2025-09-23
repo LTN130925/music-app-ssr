@@ -1,5 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
+import * as mongoose from 'mongoose';
 
 export type TopicDocument = Topic & Document;
 
@@ -14,10 +15,17 @@ export class Topic {
   @Prop()
   description: string;
 
-  @Prop({ required: true })
+  @Prop({
+    type: String,
+    unique: true,
+    lowercase: true,
+    trim: true,
+    required: true,
+  })
   slug: string;
 
   @Prop({
+    type: String,
     enum: ['active', 'inactive'],
     default: 'active',
   })

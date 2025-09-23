@@ -11,7 +11,13 @@ export class Singer {
   @Prop()
   avatar: string;
 
-  @Prop({ required: true })
+  @Prop({
+    type: String,
+    unique: true,
+    lowercase: true,
+    trim: true,
+    required: true,
+  })
   slug: string;
 
   @Prop({

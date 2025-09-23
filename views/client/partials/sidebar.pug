@@ -1,9 +1,9 @@
 //- Sidebar
 aside#sidebar.hidden
   ul.list-group.list-group-flush
-    each url in ['/', 'Music', 'Home', 'topics', 'artists', 'albums', 'songs', 'search']
+    each url in ['songs', 'topics']
       li.list-group-item
-        a(href=url)= url
+        a(href='/'+url)= url
 
 //- Backdrop
 div#sidebar-backdrop
