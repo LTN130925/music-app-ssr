@@ -1,18 +1,15 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 
-export type TopicDocument = Topic & Document;
+export type SingerDocument = Document & Singer;
 
 @Schema({ timestamps: true })
-export class Topic {
+export class Singer {
   @Prop({ required: true })
-  title: string;
+  fullName: string;
 
   @Prop()
   avatar: string;
-
-  @Prop()
-  description: string;
 
   @Prop({ required: true })
   slug: string;
@@ -33,4 +30,4 @@ export class Topic {
   deletedAt: Date;
 }
 
-export const TopicSchema = SchemaFactory.createForClass(Topic);
+export const SingerSchema = SchemaFactory.createForClass(Singer);

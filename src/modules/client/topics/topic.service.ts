@@ -12,6 +12,11 @@ export class TopicService {
 
   // [GET] /topics
   async findAll(): Promise<TopicDocument[]> {
-    return this.topicModel.find().exec();
+    const filter: Record<string, unknown> = {
+      status: 'active',
+      deleted: false,
+    };
+    const topics = await this.topicModel.find(filter).exec();
+    return topics;
   }
 }
