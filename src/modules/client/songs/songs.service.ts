@@ -5,6 +5,8 @@ import { Model } from 'mongoose';
 import { Song, SongDocument } from './schema/songs.schema';
 import { Topic, TopicDocument } from '../topics/schema/topic.schema';
 
+import { updateLike } from './dto/update-like.dto';
+
 @Injectable()
 export class SongsService {
   constructor(
@@ -59,6 +61,25 @@ export class SongsService {
       song.topicId = topic?.title || '';
       
       return song;
+    } catch (err: any) {
+      throw new Error(err.message);
+    }
+  }
+
+  // [PATCH] /songs/like/:type_like/:id
+  async findOneAndUpdate(typeLike: string, id: string): Promise<number> {
+    try {
+      const song = await this.songModel.findOne({
+        _id: id,
+        deleted: false,
+        status: 'active',
+      })
+          .lean()
+          .exec();
+      if (!song) throw new Error('Song not found');
+      const likes: number = await updateLike(this.songModel, id, typeLike);
+
+      return likes;
     } catch (err: any) {
       throw new Error(err.message);
     }

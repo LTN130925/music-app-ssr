@@ -23,9 +23,9 @@ block content
             span.meta-item
               i.fas.fa-music
               | #{song.topicId}
-            span.meta-item
+            span.meta-item.button-like.active
               i.fas.fa-thumbs-up
-              | #{song.likes} lượt thích
+              span(data-id=song._id) #{song.likes} lượt thích
             span.meta-item
               i.far.fa-heart
               | Yêu thích
