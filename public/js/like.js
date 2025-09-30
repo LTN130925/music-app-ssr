@@ -13,7 +13,7 @@ if (likeBtn) {
             const data = await res.json();
 
             // Cập nhật số lượt thích
-            span.innerHTML = `${data.likes || 0} thích`;
+            span.innerHTML = `${data.likes} lượt thích`;
 
             // Toggle active class
             likeBtn.classList.toggle('active');
