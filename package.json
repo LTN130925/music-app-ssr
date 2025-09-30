@@ -1,0 +1,28 @@
+{
+  "name": "music",
+  "version": "1.0.0",
+  "main": "./src/main.ts",
+  "scripts": {
+    "start": "nodemon ./dist/main.js",
+    "build": "tsc",
+    "dev": "nodemon --legacy-watch --exec ts-node ./src/main.ts"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^24.5.2",
+    "nodemon": "^3.1.10",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.2"
+  },
+  "dependencies": {
+    "@nestjs/common": "^11.1.6",
+    "@nestjs/config": "^4.0.2",
+    "@nestjs/core": "^11.1.6",
+    "@nestjs/mongoose": "^11.0.3",
+    "@nestjs/platform-express": "^11.1.6",
+    "mongoose": "^8.18.1",
+    "pug": "^3.0.3",
+    "reflect-metadata": "^0.2.2",
+    "rxjs": "^7.8.2"
+  }
+}
