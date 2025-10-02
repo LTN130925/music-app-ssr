@@ -43,6 +43,12 @@
   animation: likePop 0.4s forwards;
 }
 
+/* Active: đổi màu + scale nhỏ → lớn (pop) */
+.song-detail .song-meta .meta-item.button-favourite.active i {
+  color: #ef0d0d;
+  animation: likePop 0.4s forwards;
+}
+
 /* Keyframes hiệu ứng pop */
 @keyframes likePop {
   0%   { transform: scale(1); }
