@@ -9,7 +9,11 @@
   },
   "license": "MIT",
   "devDependencies": {
+    "@types/bcrypt": "^6.0.0",
+    "@types/express-flash": "^0.0.5",
+    "@types/express-session": "^1.18.2",
     "@types/node": "^24.5.2",
+    "@types/passport-local": "^1.0.38",
     "nodemon": "^3.1.10",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.2"
@@ -19,8 +23,14 @@
     "@nestjs/config": "^4.0.2",
     "@nestjs/core": "^11.1.6",
     "@nestjs/mongoose": "^11.0.3",
+    "@nestjs/passport": "^11.0.5",
     "@nestjs/platform-express": "^11.1.6",
+    "bcrypt": "^6.0.0",
+    "express-flash": "^0.0.2",
+    "express-session": "^1.18.2",
     "mongoose": "^8.18.1",
+    "passport": "^0.7.0",
+    "passport-local": "^1.0.0",
     "pug": "^3.0.3",
     "reflect-metadata": "^0.2.2",
     "rxjs": "^7.8.2"

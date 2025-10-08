@@ -7,7 +7,7 @@ import { Singer, SingerDocument } from './schema/singers.schema';
 @Injectable()
 export class SingersService {
   constructor(
-    @InjectModel(Singer.name) private singerModel: Model<SingerDocument>
+    @InjectModel(Singer.name) private readonly singerModel: Model<SingerDocument>
   ) {}
 
   async findAll(): Promise<Singer[]> {

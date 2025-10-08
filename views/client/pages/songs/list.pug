@@ -16,7 +16,7 @@ block content
                   .overlay
                     h5.title
                       a(href=`/songs/detail/${song.slug}`)= song.title
-                    p.singer 
+                    p.singer
                       i.fas.fa-microphone-alt(aria-hidden="true")
                       |  #{song.singerId.fullName ? song.singerId.fullName : 'Unknown'}
                     .meta
@@ -29,4 +29,3 @@ block content
                       span.time
                         i.far.fa-clock(aria-hidden="true")
                         |  #{song.time ? song.time : '00:00'}
-                        
