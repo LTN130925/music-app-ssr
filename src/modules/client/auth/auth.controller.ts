@@ -3,7 +3,7 @@ import { AuthGuard } from '@nestjs/passport';
 import { Request, Response } from 'express';
 
 import { AuthService } from './auth.service';
-import { RegisterValidate } from '../../../common/validate/register.validate'
+import { RegisterValidate } from '../../../common/validate/register.validate';
 import { AuthenticatedMiddleware } from '../../../common/middleware/authenticated.middlware';
 
 @Controller('auth')
@@ -35,14 +35,7 @@ export class AuthController {
             await this.authService.register(body);
             res.redirect(`/auth/login`);
         } catch (err: any) {
-            console.log(err);
-            if (err.getResponse && err.getResponse().message) {
-                const messages = err.getResponse().message;
-                const msg = Array.isArray(messages) ? messages.join('<br>') : messages;
-                req.flash('error', msg);
-            } else {
-                req.flash('error', err.message || 'Đăng ký thất bại');
-            }
+            req.flash('error', 'Đăng ký thất bại');
             res.redirect('/auth/register');
         }
     }
@@ -54,19 +47,22 @@ export class AuthController {
             titlePage: 'Trang đăng nhập',
         }
     }
-    //
+
     @UseGuards(AuthGuard('local'))
     @Post('login')
-    loginPost(@Res() res: Response, @Req() req: Request) {
-        req.login(req.user as any, (err) => {
+    loginPost(@Req() req: Request, @Res() res: Response) {
+        if (!req.user) return res.redirect('/auth/login');
+        req.login(req.user, (err) => {
             if (err) {
-                req.flash('error', 'Đăng nhập thất bại!')
+                req.flash('error', 'Đăng nhập thất bại!');
                 return res.redirect('/auth/login');
             }
-            req.flash('success', 'Đăng nhập thành công!')
-            res.redirect('/topics');
+
+            req.flash('success', 'Đăng nhập thành công!');
+            return res.redirect('/topics');
         });
     }
+
 
     @Get('logout')
     logout(@Req() req: Request, @Res() res: Response) {
@@ -74,7 +70,7 @@ export class AuthController {
             res.redirect('/auth/login');
         });
     }
-    //
+
     @UseGuards(AuthenticatedMiddleware)
     @Get('debug')
     @HttpCode(200)
