@@ -4,7 +4,7 @@ import { Request, Response } from 'express';
 
 import { AuthService } from './auth.service';
 import { RegisterValidate } from '../../../common/validate/register.validate'
-// import { AuthenticatedMiddleware } from '../../../common/middleware/authenticated.middlware';
+import { AuthenticatedMiddleware } from '../../../common/middleware/authenticated.middlware';
 
 @Controller('auth')
 export class AuthController {
@@ -75,12 +75,13 @@ export class AuthController {
         });
     }
     //
-    // @UseGuards(AuthenticatedMiddleware)
-    // @Get('debug')
-    // @HttpCode(200)
-    // debug(@Req() req: Request) {
-    //     return {
-    //         debugging: req.session,
-    //     }
-    // }
+    @UseGuards(AuthenticatedMiddleware)
+    @Get('debug')
+    @HttpCode(200)
+    debug(@Req() req: Request) {
+        return {
+            user: req.user,
+            debugging: req.session,
+        }
+    }
 }
