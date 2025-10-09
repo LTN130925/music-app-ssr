@@ -67,13 +67,13 @@ export class AuthController {
             res.redirect('/topics');
         });
     }
-    //
-    // @Get('logout')
-    // logout(@Req() req: Request, @Res() res: Response) {
-    //     req.logout(() => {
-    //         res.redirect('/auth/login');
-    //     });
-    // }
+
+    @Get('logout')
+    logout(@Req() req: Request, @Res() res: Response) {
+        req.logout(() => {
+            res.redirect('/auth/login');
+        });
+    }
     //
     // @UseGuards(AuthenticatedMiddleware)
     // @Get('debug')
