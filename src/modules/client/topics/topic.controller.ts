@@ -1,7 +1,6 @@
 import { Controller, Get, Render } from '@nestjs/common';
 
 import { TopicService } from './topic.service';
-// import { TopicDocument } from './schema/topic.schema';
 
 @Controller('topics')
 export class TopicController {

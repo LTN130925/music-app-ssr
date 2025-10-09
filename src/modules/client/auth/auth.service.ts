@@ -10,7 +10,7 @@ export class AuthService {
     constructor(
         @InjectModel(User.name) private readonly userModel: Model<UserDocument>
     ) {}
-//
+
     async register(body: { fullName: string, email: string, password: string }): Promise<void> {
         try {
             const exitsUser = await this.userModel.findOne({
@@ -28,12 +28,12 @@ export class AuthService {
                 password: await bcrypt.hash(body.password, 10) as string,
             }
             const user = new this.userModel(newUser);
-            // await user.save();
+            await user.save();
         } catch (err: any) {
             throw new InternalServerErrorException(err.message);
         }
     }
-//
+
     async login(email: string, password: string): Promise<UserDocument | null> {
         try {
             const user = await this.userModel.findOne({

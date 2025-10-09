@@ -13,9 +13,7 @@ script.
         const toasts = document.querySelectorAll('.toast');
         toasts.forEach(toast => {
             toast.style.opacity = '0'; // fade out
-            toast.style.transform = 'translateY(-10px)'; // trượt lên
-
-            // xóa khỏi DOM sau 0.3s
+            toast.style.transform = 'translateY(-10px)';
             setTimeout(() => {
                 toast.remove();
             }, 300);

@@ -12,7 +12,7 @@ export class AuthController {
 
     @Get('register')
     @Render('client/pages/auth/register')
-    register() {
+    register(@Req() req: Request) {
         return {
             titlePage: 'Trang đăng ký',
         }
@@ -42,7 +42,7 @@ export class AuthController {
 
     @Get('login')
     @Render('client/pages/auth/login')
-    login() {
+    login(@Req() req: Request) {
         return {
             titlePage: 'Trang đăng nhập',
         }
@@ -57,12 +57,10 @@ export class AuthController {
                 req.flash('error', 'Đăng nhập thất bại!');
                 return res.redirect('/auth/login');
             }
-
             req.flash('success', 'Đăng nhập thành công!');
             return res.redirect('/topics');
         });
     }
-
 
     @Get('logout')
     logout(@Req() req: Request, @Res() res: Response) {
