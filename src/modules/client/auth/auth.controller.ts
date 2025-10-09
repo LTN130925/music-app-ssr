@@ -47,13 +47,13 @@ export class AuthController {
         }
     }
 
-    // @Get('login')
-    // @Render('client/pages/auth/login')
-    // login() {
-    //     return {
-    //         titlePage: 'Trang đăng nhập',
-    //     }
-    // }
+    @Get('login')
+    @Render('client/pages/auth/login')
+    login() {
+        return {
+            titlePage: 'Trang đăng nhập',
+        }
+    }
     //
     // @UseGuards(AuthGuard('local'))
     // @Post('login')
