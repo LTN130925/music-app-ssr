@@ -26,11 +26,11 @@ export class AuthController {
     {
         try {
             // validate register
-            const errors = RegisterValidate(body.fullName, body.email, body.password, body.confirmPassword);
-            if (errors) {
-                req.flash('error', errors);
-                return res.redirect('/auth/register');
-            }
+            // const errors = RegisterValidate(body.fullName, body.email, body.password, body.confirmPassword);
+            // if (errors) {
+            //     req.flash('error', errors);
+            //     return res.redirect('/auth/register');
+            // }
 
             await this.authService.register(body);
             res.redirect(`/auth/login`);
