@@ -34,19 +34,19 @@ export class AuthService {
         }
     }
 //
-//     async login(email: string, password: string): Promise<UserDocument | null> {
-//         try {
-//             const user = await this.userModel.findOne({
-//                 email: email,
-//                 deleted: false,
-//                 status: 'active',
-//             })
-//                 .lean()
-//                 .exec();
-//             if (!user) throw new Error('User not found');
-//             else return await bcrypt.compare(password, user.password) ? user : null;
-//         } catch {
-//             throw new InternalServerErrorException('Error logging in');
-//         }
-//     }
+    async login(email: string, password: string): Promise<UserDocument | null> {
+        try {
+            const user = await this.userModel.findOne({
+                email: email,
+                deleted: false,
+                status: 'active',
+            })
+                .lean()
+                .exec();
+            if (!user) throw new Error('User not found');
+            else return await bcrypt.compare(password, user.password) ? user : null;
+        } catch {
+            throw new InternalServerErrorException('Error logging in');
+        }
+    }
 }

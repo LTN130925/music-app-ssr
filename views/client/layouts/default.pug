@@ -15,6 +15,7 @@ html(lang='en')
     link(rel='stylesheet', href='/css/topics.css')
     link(rel='stylesheet', href='/css/songs.css')
     link(rel='stylesheet', href='/css/detailSong.css')
+    link(rel='stylesheet', href='/css/alert.css')
   body
     //- Header
     include ../partials/header
@@ -24,6 +25,8 @@ html(lang='en')
 
     //- Content
     main#content
+      // alert
+      include ../mixins/alert
       block content
 
     //- Footer

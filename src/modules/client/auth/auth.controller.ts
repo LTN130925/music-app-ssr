@@ -1,5 +1,5 @@
 import { Controller, Get, Post, Body, Render, UseGuards, Req, Res, HttpCode } from '@nestjs/common';
-// import { AuthGuard } from '@nestjs/passport';
+import { AuthGuard } from '@nestjs/passport';
 import { Request, Response } from 'express';
 
 import { AuthService } from './auth.service';
@@ -55,18 +55,18 @@ export class AuthController {
         }
     }
     //
-    // @UseGuards(AuthGuard('local'))
-    // @Post('login')
-    // loginPost(@Res() res: Response, @Req() req: Request) {
-    //     req.login(req.user as any, (err) => {
-    //         if (err) {
-    //             console.error('login err', err);
-    //             return res.redirect('/auth/login');
-    //         }
-    //         console.log('login success!');
-    //         res.redirect('/topics');
-    //     });
-    // }
+    @UseGuards(AuthGuard('local'))
+    @Post('login')
+    loginPost(@Res() res: Response, @Req() req: Request) {
+        req.login(req.user as any, (err) => {
+            if (err) {
+                req.flash('error', 'Đăng nhập thất bại!')
+                return res.redirect('/auth/login');
+            }
+            req.flash('success', 'Đăng nhập thành công!')
+            res.redirect('/topics');
+        });
+    }
     //
     // @Get('logout')
     // logout(@Req() req: Request, @Res() res: Response) {
